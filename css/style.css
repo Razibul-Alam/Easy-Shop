@@ -48,6 +48,9 @@ body {
 .cart-main {
   padding-right: 30px;
 }
+.card-color{
+  background-color:aqua;
+}
 
 @media only screen and (max-width: 768px) {
   #all-products {
