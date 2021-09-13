@@ -13,9 +13,9 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     const {image,rating,title,price,category} = product;
     const div = document.createElement("div");
-    div.classList.add("col", "text-center", "shadow", "rounded" ,);
+    div.classList.add("col", "text-center");
     div.innerHTML = `
-    <div class="card h-100">
+    <div class="card h-100 rounded shadow-lg bg-light">
     <img src=${image} class="product-image mt-3" alt="...">
     <div class="card-body">
       <h4 class="card-title">${title}</h4>
