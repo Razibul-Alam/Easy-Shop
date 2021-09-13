@@ -1,3 +1,4 @@
+// load products from server
 const loadProducts = () => {
   const url = `https://raw.githubusercontent.com/ProgrammingHero1/ranga-store-api/main/ranga-api.json`;
   fetch(url)
@@ -10,27 +11,34 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    const {image,rating} = product;
+    const {image,rating,title,price,category} = product;
     const div = document.createElement("div");
-    div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
-      <div>
-    <img class="product-image" src=${image}></img>
+    div.classList.add("col", "text-center", "shadow", "rounded" ,);
+    div.innerHTML = `
+    <div class="card h-100">
+    <img src=${image} class="product-image mt-3" alt="...">
+    <div class="card-body">
+      <h4 class="card-title">${title}</h4>
+      <p>Category : ${category}</P>
+      <h5>Price: $ ${price}</h5>
+      <h6>Total Ratings : ${rating.count}</h6>
+      <h6>Average Rating:<span class="text-warning fs-4"> <i class="fas fa-star"></i></span> ${rating.rate} </h6>
+    </div>
+    <div class="mb-3">
+    <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-dark">add to cart</button>
+    <button id="details-btn" class="btn btn-primary">Details</button></div>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <h4>Rating - <span class="text-warning"><i class="fas fa-star"></i></span> ${rating.rate}</h4>
-      <h4>Reviwes-${rating.count}</h4>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
-      `;
+    
+  </div>
+  </div>
+  `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// product add to cart
 let count = 0;
 const addToCart = (id, price) => {
-  // console.log(id,price)
   count = count + 1;
   updatePrice("price", price);
 
@@ -39,6 +47,7 @@ const addToCart = (id, price) => {
   updateTotal()
 };
 
+// get id from html elements
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -48,7 +57,6 @@ const getInputValue = (id) => {
 
 // main price update function
 const updatePrice = (id, value) => {
-  // console.log(id,value)
   const convertedOldPrice = getInputValue(id);
   const convertPrice =value;
   const total = convertedOldPrice + convertPrice;
