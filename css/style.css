@@ -52,6 +52,7 @@ body {
   background-color:rgba(12, 12, 12);
 }
 
+
 @media only screen and (max-width: 768px) {
   #all-products {
     display: grid;
