@@ -14,18 +14,20 @@ const showProducts = (products) => {
     const {image,rating,title,price,category} = product;
     const div = document.createElement("div");
     div.classList.add("col", "text-center");
+    const ratings=Math.round(rating.rate)
     div.innerHTML = `
-    <div class="card h-100 rounded shadow-lg bg-light">
-    <img src=${image} class="product-image mt-3" alt="...">
-    <div class="card-body">
+    <div class="card h-100 rounded shadow-lg text-light">
+    <img src=${image} class="product-image my-3" alt="...">
+    <div class="card-body my-card">
       <h4 class="card-title">${title}</h4>
       <p>Category : ${category}</P>
       <h5>Price: $ ${price}</h5>
       <h6>Total Ratings : ${rating.count}</h6>
       <h6>Average Rating:<span class="text-warning fs-4"> <i class="fas fa-star"></i></span> ${rating.rate} </h6>
+      
     </div>
-    <div class="mb-3">
-    <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-dark">add to cart</button>
+    <div class="mb-2 my-card">
+    <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-danger">add to cart</button>
     <button id="details-btn" class="btn btn-primary">Details</button></div>
       </div>
     
